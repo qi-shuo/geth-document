@@ -1,0 +1,71 @@
+公有的节点启动命令：
+
+#!/bin/bash
+DATA_DIR=$PWD/data
+LOG_DIR=$DATA_DIR/log
+echo "Start geth in prd!"
+nohup geth --syncmode "fast" --cache=4096 --rpc --rpcaddr "172.21.84.65" --rpcport “8666" --rpccorsdomain "*" --datadir $DATA_DIR --port "8548" --rpcapi "eth,net,web3,debug,personal,miner,txpool" 2>$LOG_DIR &
+echo "geth running on localhost:8666!"
+
+
+进入console的命令：
+
+
+#!/bin/bash
+geth attach http://127.0.0.1:8121
+
+
+私有链启动命令：
+#!/bin/bash
+DATA_DIR=$PWD/data
+echo "Start geth in dev!"
+nohup geth --rpc --rpcaddr "192.168.20.254" --rpcport "8666" --rpccorsdomain "*" --datadir $DATA_DIR --port "8548" --rpcapi "eth,net,web3,debug,personal,miner" --dev --mine 2>/dev/null &
+echo "geth running on localhost:8666!"
+
+
+
+geth --datadir node1/ --syncmode full --port 30311 --rpc --rpcaddr localhost --rpcport 8501 --rpcapi personal,db,eth,net,web3,txpool,miner --bootnodes enode://4c7d2fc885b5ef8b0a761020890061ad65cea1d290d49b6518c2cce8c21198dc836e4299f5aa128f446d1343d5e6f526f807954491ee77ccd0220609439e9b1c@127.0.0.1:30103 --networkid 1314 --gasprice 1 -unlock 0xc92364fae765d1a91f7fe8c136cba74cc0186fa4 --password node1/pwd.txt --mine
+
+
+geth --identity "enode1" --rpc --rpcport "8121" --rpccorsdomain "*" --datadir ./enode1/data --port "2001" --nodiscover --rpcaddr "192.168.1.128" --rpcapi "db,eth,net,web3,personal" 
+
+
+geth --identity "enode1" --rpc --rpcport "8121" --rpccorsdomain "*" --datadir ./enode1/data --port "2001" --nodiscover --rpcaddr "192.168.1.128" --rpcapi "db,eth,net,web3,personal" 
+
+
+204服务器搭建的启动命令
+
+geth --identity "enode1" --rpc --rpcport "8121" --rpccorsdomain "*" --datadir /root/eth-node-private/chain --port "2001" --nodiscover --rpcaddr "127.0.0.1" --rpcapi "db,eth,net,web3,personal"
+
+
+geth --networkid 123 --datadir chain --ipcdisable --port 61911 --rpcport 8201 console
+
+
+
+
+cmd进入geth安装目录
+geth --datadir 目录 --nodiscover console
+
+
+启动命令 进入console
+
+geth --datadir data --port 2001 --networkid 88 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0" --nodiscover console
+
+初始化创世区块
+geth --datadir 目录 init 创世区块.json
+
+删除创世区块
+geth removedb --datadir chain1
+
+geth --identity "node1” --rpc --rpcport "8121" --rpccorsdomain "*" --datadir chain --port "2001" --nodiscover --rpcaddr "127.0.0.1" --rpcapi "db,eth,net,web3,personal" 
+
+转账命令:
+eth.sendTransaction({from: '0xa7c417243694fb3a880629879dfe4b71f7cffd3f', to: '0x0ee35a76b6dbc9fcb44afbbf92362b6653ebcd1a', value: web3.toWei(1, "ether")})
+
+单位换算
+web3.fromWei('21000000000000', 'ether');
+
+web3.toWei(1, "ether")
+
+
+

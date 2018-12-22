@@ -1,0 +1,14 @@
+https://www.jianshu.com/p/2c2671ff1d5f
+https://blog.csdn.net/sunshine1314/article/details/79692502
+https://www.cnblogs.com/tinyxiong/p/7918706.html
+https://github.com/ethereum/go-ethereum
+https://github.com/web3j/web3j
+https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network
+http://cw.hubwiz.com/card/c/web3j/1/1/5/
+https://web3.learnblockchain.cn/0.2x.x/web3.eth/#web3ethdefaultaccount
+https://www.jianshu.com/p/e9d37afe4149
+https://www.jianshu.com/p/b31c208acaaa
+https://github.com/ethereum/go-ethereum/issues/16377
+https://github.com/ethereum/wiki/wiki/JSON-RPC
+https://stackoverflow.com/questions/53206228/ethereum-geth-out-of-memory
+https://learnblockchain.cn/2017/11/29/geth_cmd_options/

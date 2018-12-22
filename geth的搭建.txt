@@ -1,0 +1,50 @@
+geth的部署
+
+进入数据目录创建一个账户
+geth --datadir 目录 --nodiscover console
+
+puppeth 使用geth自带的创建创世区块
+
+
+删除创世区块
+geth removedb --datadir  目录
+
+初始化创世区块
+geth --datadir 目录 init 创世区块.json
+
+
+启动命令:
+//不开启自动挖矿	
+geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi "db,eth,net,web3,personal" --nodiscover console
+
+//加入节点
+geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi "db,eth,net,web3,personal"  --bootnodes "enode://e13a4cf069fb34e4734633b2e9a38598767b2118d5dff3771e4bc0d2ad3aac088f9dc362c27c7f5f232ad72b3653a7b3a8b4254389da56c72854cff1470b0028@10.10.5.203:2001" --nodiscover console
+
+
+
+//开启自动挖矿
+geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi  "db,eth,net,web3,personal,miner,admin" --nodiscover  --unlock 0xe5b5581bfc216e83501f6fa85e0374cd3ee7586a  --password pwd.txt --mine 
+
+
+//加入节点自动挖矿
+geth --datadir data --syncmode full --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi  "db,eth,net,web3,personal,miner" --nodiscover  --bootnodes "enode://43d5a7932c5cbe9ee029b3179831f1579fa095c1b9460073c0afbb9c409473115b66bb2b8aab2a1d1060253f66e1a97b0ac0db89367bfbfa39e6e8669807104d@10.10.5.201:2001"  --unlock 0xb575003e8b420187e3d62fe19538b7678457b6a3 --password pwd.txt --mine
+
+
+geth attach http://127.0.0.1:8545
+
+
+ admin.nodeInfo:获取节点信息
+加入节点
+
+geth  --datadir data  --syncmode full  --port 2001   --networkid 1234  --rpc  --rpcport "8545”   --rpccorsdomain "*"  --rpcaddr "0.0.0.0"   --rpcapi "db,eth,net,web3,personal"  --bootnodes "enode://abbd59b4955bb2f3cb8c5c9106249727637f1ae13fbfae4596de03917a173d03feea37eb5129168254a9b0cdf1fc77d81d96ec346492d1ffbfcc54358a95ecf4@10.10.5.202:2001"   --nodiscover console
+
+//服务器上已有的私有链启动命令
+geth --datadir node1/ --syncmode full --port 30311 --rpc --rpcaddr localhost --rpcport 8501 --rpcapi personal,db,eth,net,web3,txpool,miner --bootnodes enode://b7313f04ca630b004962ef6ff09e9172aeee6ad7ef43b062aa47d0625e45511dbe1c97c79d569e334830b4eee0399d6be14f2274a3dfa742638e8414eda6535c@127.0.0.1:2001?discport=0 --networkid 1314 --gasprice 1 -unlock 0xc92364fae765d1a91f7fe8c136cba74cc0186fa4 --password node1/pwd.txt --mine
+
+
+总结
+两个服务器部署两个节点是可以联通的,但是只能使用两个节点对应的地址进行挖矿,所以只能是两个节点对应两个地址进行挖矿,使用poa共识,当一个节点挂掉,挖矿停止,因为poa共识挖矿必须超过50%的节点进行钱增,现在只是两个节点,挂点一个挖矿就好停止等待另一个节点的确认,停掉的节点可以通过正常运作的节点信息重新连接到网络中
+
+
+同步块有可能报错情况:1:Synchronisation failed "retrieved hash chain is invalid" 解决目前找到的方法是removedb 数据目录 ,重新init创世区块
+                                      2:内存溢出初步确认为开启rpc服务造成的,有可能服务器恶意被黑,暴力破解密码,占有内存(将IP设置防火墙)
