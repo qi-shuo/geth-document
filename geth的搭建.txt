@@ -18,12 +18,12 @@ geth --datadir 目录 init 创世区块.json
 geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi "db,eth,net,web3,personal" --nodiscover console
 
 //加入节点
-geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi "db,eth,net,web3,personal"  --bootnodes "enode://e13a4cf069fb34e4734633b2e9a38598767b2118d5dff3771e4bc0d2ad3aac088f9dc362c27c7f5f232ad72b3653a7b3a8b4254389da56c72854cff1470b0028@10.10.5.203:2001" --nodiscover console
+geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi "db,eth,net,web3,personal,clique"  --bootnodes "enode://e13a4cf069fb34e4734633b2e9a38598767b2118d5dff3771e4bc0d2ad3aac088f9dc362c27c7f5f232ad72b3653a7b3a8b4254389da56c72854cff1470b0028@10.10.5.203:2001" --nodiscover console
 
 
-
+//rpcapi中的clique是控制挖矿地址的,可以发起提议添加挖矿地址也可以踢出挖矿地址
 //开启自动挖矿
-geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi  "db,eth,net,web3,personal,miner,admin" --nodiscover  --unlock 0xe5b5581bfc216e83501f6fa85e0374cd3ee7586a  --password pwd.txt --mine 
+geth --datadir data --syncmode full  --port 2001 --networkid 1234 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "0.0.0.0"  --rpcapi  "db,eth,net,web3,personal,miner,admin,clique" --nodiscover  --unlock 0xe5b5581bfc216e83501f6fa85e0374cd3ee7586a  --password pwd.txt --mine 
 
 
 //加入节点自动挖矿
